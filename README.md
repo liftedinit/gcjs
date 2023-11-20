@@ -1,4 +1,4 @@
-# ghostcloud
+# gcjs
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/545047/188804067-28e67e5e-0214-4449-ab04-2e0c564a6885.svg" width="80"><br />
@@ -9,11 +9,11 @@
 ## install
 
 ```sh
-npm install ghostcloud
+npm install gcjs
 ```
 ## Table of contents
 
-- [ghostcloud](#ghostcloud)
+- [gcjs](#gcjs)
   - [Install](#install)
   - [Table of contents](#table-of-contents)
 - [Usage](#usage)
@@ -35,38 +35,38 @@ npm install ghostcloud
 ### RPC Clients
 
 ```js
-import { ghostcloud } from 'ghostcloud';
+import { gcjs } from 'gcjs';
 
-const { createRPCQueryClient } = ghostcloud.ClientFactory; 
+const { createRPCQueryClient } = gcjs.ClientFactory; 
 const client = await createRPCQueryClient({ rpcEndpoint: RPC_ENDPOINT });
 
 // now you can query the cosmos modules
 const balance = await client.cosmos.bank.v1beta1
-    .allBalances({ address: 'ghostcloud1addresshere' });
+    .allBalances({ address: 'gcjs1addresshere' });
 
-// you can also query the ghostcloud modules
-const balances = await client.ghostcloud.exchange.v1beta1
+// you can also query the gcjs modules
+const balances = await client.gcjs.exchange.v1beta1
     .exchangeBalances()
 ```
 
 ### Composing Messages
 
-Import the `ghostcloud` object from `ghostcloud`. 
+Import the `gcjs` object from `gcjs`. 
 
 ```js
-import { ghostcloud } from 'ghostcloud';
+import { gcjs } from 'gcjs';
 
 const {
     createSpotLimitOrder,
     createSpotMarketOrder,
     deposit
-} = ghostcloud.exchange.v1beta1.MessageComposer.withTypeUrl;
+} = gcjs.exchange.v1beta1.MessageComposer.withTypeUrl;
 ```
 
 #### CosmWasm Messages
 
 ```js
-import { cosmwasm } from "ghostcloud";
+import { cosmwasm } from "gcjs";
 
 const {
     clearAdmin,
@@ -81,7 +81,7 @@ const {
 #### IBC Messages
 
 ```js
-import { ibc } from 'ghostcloud';
+import { ibc } from 'gcjs';
 
 const {
     transfer
@@ -91,7 +91,7 @@ const {
 #### Cosmos Messages
 
 ```js
-import { cosmos } from 'ghostcloud';
+import { cosmos } from 'gcjs';
 
 const {
     fundCommunityPool,
@@ -129,12 +129,12 @@ Here are the docs on [creating signers](https://github.com/cosmology-tech/cosmos
 
 ### Initializing the Stargate Client
 
-Use `getSigningghostcloudClient` to get your `SigningStargateClient`, with the proto/amino messages full-loaded. No need to manually add amino types, just require and initialize the client:
+Use `getSigninggcjsClient` to get your `SigningStargateClient`, with the proto/amino messages full-loaded. No need to manually add amino types, just require and initialize the client:
 
 ```js
-import { getSigningghostcloudClient } from 'ghostcloud';
+import { getSigninggcjsClient } from 'gcjs';
 
-const stargateClient = await getSigningghostcloudClient({
+const stargateClient = await getSigninggcjsClient({
   rpcEndpoint,
   signer // OfflineSigner
 });
@@ -166,7 +166,7 @@ import { chains } from 'chain-registry';
 
 const mnemonic =
   'unfold client turtle either pilot stock floor glow toward bullet car science';
-  const chain = chains.find(({ chain_name }) => chain_name === 'ghostcloud');
+  const chain = chains.find(({ chain_name }) => chain_name === 'gcjs');
   const signer = await getOfflineSigner({
     mnemonic,
     chain
@@ -218,25 +218,25 @@ import {
     cosmwasmProtoRegistry,
     ibcProtoRegistry,
     ibcAminoConverters,
-    ghostcloudAminoConverters,
-    ghostcloudProtoRegistry
-} from 'ghostcloud';
+    gcjsAminoConverters,
+    gcjsProtoRegistry
+} from 'gcjs';
 
 const signer: OfflineSigner = /* create your signer (see above)  */
-const rpcEndpint = 'https://rpc.cosmos.directory/ghostcloud'; // or another URL
+const rpcEndpint = 'https://rpc.cosmos.directory/gcjs'; // or another URL
 
 const protoRegistry: ReadonlyArray<[string, GeneratedType]> = [
     ...cosmosProtoRegistry,
     ...cosmwasmProtoRegistry,
     ...ibcProtoRegistry,
-    ...ghostcloudProtoRegistry
+    ...gcjsProtoRegistry
 ];
 
 const aminoConverters = {
     ...cosmosAminoConverters,
     ...cosmwasmAminoConverters,
     ...ibcAminoConverters,
-    ...ghostcloudAminoConverters
+    ...gcjsAminoConverters
 };
 
 const registry = new Registry(protoRegistry);
@@ -259,7 +259,7 @@ yarn build
 
 ### Codegen
 
-Contract schemas live in `./contracts`, and protos in `./proto`. Look inside of `scripts/codegen.js` and configure the settings for bundling your SDK and contracts into `ghostcloud`:
+Contract schemas live in `./contracts`, and protos in `./proto`. Look inside of `scripts/codegen.js` and configure the settings for bundling your SDK and contracts into `gcjs`:
 
 ```
 yarn codegen
