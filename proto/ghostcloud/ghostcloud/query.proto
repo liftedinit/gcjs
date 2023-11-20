@@ -1,0 +1,56 @@
+syntax = "proto3";
+package ghostcloud.ghostcloud;
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "ghostcloud/ghostcloud/dataset.proto";
+import "ghostcloud/ghostcloud/filter-by.proto";
+import "ghostcloud/ghostcloud/meta.proto";
+import "ghostcloud/ghostcloud/params.proto";
+
+option go_package = "ghostcloud/x/ghostcloud/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  // Parameters queries the parameters of the module.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/ghostcloud/ghostcloud/params";
+  }
+
+  rpc Metas(QueryMetasRequest) returns (QueryMetasResponse) {
+    option (google.api.http).get = "/ghostcloud/ghostcloud/deployments";
+  }
+
+  rpc Content(QueryContentRequest) returns (QueryContentResponse) {
+    option (google.api.http).get = "/ghostcloud/ghostcloud/content/{creator}/{name}/{path=**}";
+  }
+}
+
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryMetasRequest {
+  repeated Filter filters = 1;
+  cosmos.base.query.v1beta1.PageRequest pagination = 2;
+}
+
+message QueryMetasResponse {
+  repeated Meta meta = 1;
+}
+
+message QueryContentRequest {
+  string creator = 1;
+  string name = 2;
+  string path = 3;
+}
+
+message QueryContentResponse {
+  bytes content = 1;
+}
