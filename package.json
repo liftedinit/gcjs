@@ -1,13 +1,13 @@
 {
   "name": "@liftedinit/gcjs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Decentralized Web Hosting",
   "author": "The Lifted Initiative <info@liftedinit.org>",
   "homepage": "https://github.com/liftedinit/gcjs#readme",
   "license": "SEE LICENSE IN LICENSE",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "typings": "dist/index.d.ts",
+  "main": "dist/codegen/index.js",
+  "module": "dist/codegen/index.mjs",
+  "typings": "dist/codegen/index.d.ts",
   "directories": {
     "lib": "src"
   },
