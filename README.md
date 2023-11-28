@@ -9,7 +9,7 @@
 ## install
 
 ```sh
-npm install gcjs
+npm install @liftedinit/gcjs
 ```
 ## Table of contents
 
@@ -35,7 +35,7 @@ npm install gcjs
 ### RPC Clients
 
 ```js
-import { gcjs } from 'gcjs';
+import { gcjs } from '@liftedinit/gcjs';
 
 const { createRPCQueryClient } = gcjs.ClientFactory; 
 const client = await createRPCQueryClient({ rpcEndpoint: RPC_ENDPOINT });
@@ -54,7 +54,7 @@ const balances = await client.gcjs.exchange.v1beta1
 Import the `gcjs` object from `gcjs`. 
 
 ```js
-import { gcjs } from 'gcjs';
+import { gcjs } from '@liftedinit/gcjs';
 
 const {
     createSpotLimitOrder,
@@ -66,7 +66,7 @@ const {
 #### CosmWasm Messages
 
 ```js
-import { cosmwasm } from "gcjs";
+import { cosmwasm } from "@liftedinit/gcjs";
 
 const {
     clearAdmin,
@@ -81,7 +81,7 @@ const {
 #### IBC Messages
 
 ```js
-import { ibc } from 'gcjs';
+import { ibc } from '@liftedinit/gcjs';
 
 const {
     transfer
@@ -91,7 +91,7 @@ const {
 #### Cosmos Messages
 
 ```js
-import { cosmos } from 'gcjs';
+import { cosmos } from '@liftedinit/gcjs';
 
 const {
     fundCommunityPool,
@@ -132,7 +132,7 @@ Here are the docs on [creating signers](https://github.com/cosmology-tech/cosmos
 Use `getSigninggcjsClient` to get your `SigningStargateClient`, with the proto/amino messages full-loaded. No need to manually add amino types, just require and initialize the client:
 
 ```js
-import { getSigninggcjsClient } from 'gcjs';
+import { getSigninggcjsClient } from '@liftedinit/gcjs';
 
 const stargateClient = await getSigninggcjsClient({
   rpcEndpoint,
