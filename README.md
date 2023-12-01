@@ -35,32 +35,32 @@ npm install @liftedinit/gcjs
 ### RPC Clients
 
 ```js
-import { gcjs } from '@liftedinit/gcjs';
+import { ghostcloud } from '@liftedinit/gcjs';
 
-const { createRPCQueryClient } = gcjs.ClientFactory; 
+const { createRPCQueryClient } = ghostcloud.ClientFactory; 
 const client = await createRPCQueryClient({ rpcEndpoint: RPC_ENDPOINT });
 
 // now you can query the cosmos modules
 const balance = await client.cosmos.bank.v1beta1
-    .allBalances({ address: 'gcjs1addresshere' });
+    .allBalances({ address: 'gc1addresshere' });
 
-// you can also query the gcjs modules
-const balances = await client.gcjs.exchange.v1beta1
+// you can also query the ghostcloud modules
+const balances = await client.ghostcloud.exchange.v1beta1
     .exchangeBalances()
 ```
 
 ### Composing Messages
 
-Import the `gcjs` object from `gcjs`. 
+Import the `ghostcloud` object from `gcjs`. 
 
 ```js
-import { gcjs } from '@liftedinit/gcjs';
+import { ghostcloud } from '@liftedinit/gcjs';
 
 const {
     createSpotLimitOrder,
     createSpotMarketOrder,
     deposit
-} = gcjs.exchange.v1beta1.MessageComposer.withTypeUrl;
+} = ghostcloud.exchange.v1beta1.MessageComposer.withTypeUrl;
 ```
 
 #### CosmWasm Messages
@@ -129,12 +129,12 @@ Here are the docs on [creating signers](https://github.com/cosmology-tech/cosmos
 
 ### Initializing the Stargate Client
 
-Use `getSigninggcjsClient` to get your `SigningStargateClient`, with the proto/amino messages full-loaded. No need to manually add amino types, just require and initialize the client:
+Use `getSigningGhostcloudClient` to get your `SigningStargateClient`, with the proto/amino messages full-loaded. No need to manually add amino types, just require and initialize the client:
 
 ```js
-import { getSigninggcjsClient } from '@liftedinit/gcjs';
+import { getSigningGhostcloudClient } from '@liftedinit/gcjs';
 
-const stargateClient = await getSigninggcjsClient({
+const stargateClient = await getSigningGhostcloudClient({
   rpcEndpoint,
   signer // OfflineSigner
 });
@@ -166,7 +166,7 @@ import { chains } from 'chain-registry';
 
 const mnemonic =
   'unfold client turtle either pilot stock floor glow toward bullet car science';
-  const chain = chains.find(({ chain_name }) => chain_name === 'gcjs');
+  const chain = chains.find(({ chain_name }) => chain_name === 'ghostcloud');
   const signer = await getOfflineSigner({
     mnemonic,
     chain
@@ -218,25 +218,25 @@ import {
     cosmwasmProtoRegistry,
     ibcProtoRegistry,
     ibcAminoConverters,
-    gcjsAminoConverters,
-    gcjsProtoRegistry
+    ghostcloudAminoConverters,
+    ghostcloudProtoRegistry
 } from 'gcjs';
 
 const signer: OfflineSigner = /* create your signer (see above)  */
-const rpcEndpint = 'https://rpc.cosmos.directory/gcjs'; // or another URL
+const rpcEndpoint = 'https://rpc.ghostcloud.org'; // or another URL
 
 const protoRegistry: ReadonlyArray<[string, GeneratedType]> = [
     ...cosmosProtoRegistry,
     ...cosmwasmProtoRegistry,
     ...ibcProtoRegistry,
-    ...gcjsProtoRegistry
+    ...ghostcloudProtoRegistry
 ];
 
 const aminoConverters = {
     ...cosmosAminoConverters,
     ...cosmwasmAminoConverters,
     ...ibcAminoConverters,
-    ...gcjsAminoConverters
+    ...ghostcloudAminoConverters
 };
 
 const registry = new Registry(protoRegistry);
