@@ -42,8 +42,8 @@
     "url": "https://github.com/liftedinit/gcjs/issues"
   },
   "devDependencies": {
-    "@cosmology/telescope": "^1.1.1",
-    "@cosmology/lcd": "^0.13.3",
+    "@cosmology/telescope": "^1.12.20",
+    "@cosmology/lcd": "^0.14.4",
     "@protobufs/cosmos": "^0.1.0",
     "@protobufs/cosmos_proto": "^0.0.10",
     "@types/jest": "^29.5.0",
@@ -59,9 +59,9 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@cosmjs/amino": "0.32.0",
-    "@cosmjs/proto-signing": "0.32.0",
-    "@cosmjs/stargate": "0.32.0",
-    "@cosmjs/tendermint-rpc": "^0.32.0"
+    "@cosmjs/amino": "0.36.0",
+    "@cosmjs/proto-signing": "0.36.0",
+    "@cosmjs/stargate": "0.36.0",
+    "@cosmjs/tendermint-rpc": "^0.36.0"
   }
 }

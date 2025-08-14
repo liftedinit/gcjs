@@ -1,0 +1,15 @@
+syntax = "proto3";
+package liftedinit.ghostcloud.v1;
+
+import "liftedinit/ghostcloud/v1/archive.proto";
+import "liftedinit/ghostcloud/v1/dataset.proto";
+
+option go_package = "github.com/liftedinit/ghostcloud/x/ghostcloud/types";
+
+message Payload {
+  oneof payload_option {
+    Dataset dataset = 1;
+    Archive archive = 2;
+  }
+}
+

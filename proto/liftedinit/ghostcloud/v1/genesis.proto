@@ -1,0 +1,20 @@
+syntax = "proto3";
+package liftedinit.ghostcloud.v1;
+
+import "gogoproto/gogo.proto";
+import "liftedinit/ghostcloud/v1/dataset.proto";
+import "liftedinit/ghostcloud/v1/meta.proto";
+import "liftedinit/ghostcloud/v1/params.proto";
+
+option go_package = "github.com/liftedinit/ghostcloud/x/ghostcloud/types";
+
+message Deployment {
+  Meta meta = 1;
+  Dataset dataset = 2;
+}
+
+// GenesisState defines the ghostcloud module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+  repeated Deployment deployments = 2;
+}
